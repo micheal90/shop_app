@@ -6,7 +6,7 @@ class ProductsProvider extends ChangeNotifier {
     ProductModel(
       id: '1',
       title: 'Jeans Shirt',
-      price: 20.0,
+      price: 30.0,
       description: 'any description about the product',
       imageUrl:
           'https://4.imimg.com/data4/LL/TW/MY-33084776/men-s-shirt-500x500.jpg',
@@ -18,25 +18,25 @@ class ProductsProvider extends ChangeNotifier {
       price: 10.0,
       description: 'any description about the product',
       imageUrl:
-          'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F2c%2F82%2F2c82435e88bb7a28468576feaa1fe7c99a2b9946.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/zoom]&zoom=zoom',
+          'https://static.zajo.net/content/mediagallery/zajo_dcat/image/product/types/X/9086.png',
       isFavorites: false,
     ),
     ProductModel(
       id: '3',
-      title: 'Jeans Shirt',
-      price: 20.0,
+      title: 'Jacket',
+      price: 100.0,
       description: 'any description about the product',
       imageUrl:
-          'https://4.imimg.com/data4/LL/TW/MY-33084776/men-s-shirt-500x500.jpg',
+          'https://i.sportisimo.com/products/images/960/960351/450x450/champion-213628-gs502-bomber-jacket_0.jpg',
       isFavorites: false,
     ),
     ProductModel(
       id: '4',
-      title: 'T-Shirt',
-      price: 10.0,
+      title: 'Leather Jacket',
+      price: 150.0,
       description: 'any description about the product',
       imageUrl:
-          'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F2c%2F82%2F2c82435e88bb7a28468576feaa1fe7c99a2b9946.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/zoom]&zoom=zoom',
+          'https://www.bolf.eu/eng_pl_Mens-Leather-Jacket-Black-Bolf-1107-75137_2.jpg',
       isFavorites: false,
     ),
   ];

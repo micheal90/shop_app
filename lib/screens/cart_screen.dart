@@ -55,22 +55,24 @@ class _CartScreenState extends State<CartScreen> {
                           const SizedBox(
                             width: 10,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                isloading = true;
-                              });
-                              Provider.of<OrdersProvider>(context,
-                                      listen: false)
-                                  .addOrder(
-                                cartList: valueCart.cartList,
-                                totalPrice: valueCart.getTotalPrice(),
-                              );
-                              valueCart.clear();
-                              setState(() {
-                                isloading = false;
-                              });
-                            },
+                          MaterialButton(
+                            onPressed: valueCart.cartList.isEmpty
+                                ? null
+                                : () {
+                                    setState(() {
+                                      isloading = true;
+                                    });
+                                    Provider.of<OrdersProvider>(context,
+                                            listen: false)
+                                        .addOrder(
+                                      cartList: valueCart.cartList,
+                                      totalPrice: valueCart.getTotalPrice(),
+                                    );
+                                    valueCart.clear();
+                                    setState(() {
+                                      isloading = false;
+                                    });
+                                  },
                             child: isloading
                                 ? CircularProgressIndicator()
                                 : Text('ORDER NOW',
