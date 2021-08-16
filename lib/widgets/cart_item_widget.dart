@@ -35,7 +35,23 @@ class CartItemWidget extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('${quantity}x'),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: ()=>Provider.of<CartProvider>(context,listen: false)
+                        .decreaseQuantity(id),
+                          icon: Icon(
+                            Icons.remove_circle_outline,
+                          )),
+                      Text('$quantity'),
+                      IconButton(
+                          onPressed: ()=>Provider.of<CartProvider>(context,listen: false)
+                        .increaseQuantity(id),
+                          icon: Icon(Icons.add_circle_outline,))
+                    ],
+                  ),
+                
                 VerticalDivider(
                   thickness: 1,
                   color: Colors.black,
@@ -43,8 +59,8 @@ class CartItemWidget extends StatelessWidget {
                   endIndent: 5,
                 ),
                 IconButton(
-                    onPressed: () async =>await Provider.of<CartProvider>(context,listen: false)
-                        .decreaseQuantity(id),
+                    onPressed: ()  => Provider.of<CartProvider>(context,listen: false)
+                        .deleteItemFromCart(id),
                     icon: Icon(
                       Icons.delete,
                       color: Colors.red,

@@ -37,8 +37,8 @@ class ProductItemWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () async =>
-                await Provider.of<ProductsProvider>(context, listen: false)
+            onPressed: ()  =>
+                 Provider.of<ProductsProvider>(context, listen: false)
                     .deleteProduct(id),
             icon: Icon(
               Icons.delete,

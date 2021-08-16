@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/product_model.dart';
+import 'package:shop/providers/cart_provider.dart';
+import 'package:shop/providers/products_provider.dart';
 
 class ProductGridItemWidget extends StatelessWidget {
-  final String text;
-  final imageUrl;
+  // final String text, id;
+  // final imageUrl;
+  final ProductModel productModel;
 
   const ProductGridItemWidget({
-    required this.text,
-    required this.imageUrl,
+    // required this.id,
+    // required this.text,
+    // required this.imageUrl,
+    required this.productModel,
     Key? key,
   }) : super(key: key);
 
@@ -19,14 +26,13 @@ class ProductGridItemWidget extends StatelessWidget {
         topRight: Radius.circular(10),
       )),
       child: GridTile(
-        
         child: ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
           child: Image.network(
-            imageUrl,
+            productModel.imageUrl,
             fit: BoxFit.fill,
           ),
         ),
@@ -36,17 +42,23 @@ class ProductGridItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Provider.of<ProductsProvider>(context, listen: false)
+                          .setFavorite(productModel.id),
                   icon: Icon(
-                    Icons.favorite_outline,
+                    productModel.isFavorites
+                        ? Icons.favorite
+                        : Icons.favorite_outline,
                     color: Colors.red,
                   )),
               Text(
-                text,
+                productModel.title,
                 style: Theme.of(context).textTheme.headline3,
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Provider.of<CartProvider>(context, listen: false)
+                          .addItemToCart(productModel),
                   icon: Icon(
                     Icons.add_shopping_cart_rounded,
                     color: Colors.red,

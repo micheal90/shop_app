@@ -28,8 +28,7 @@ class ProductsScreen extends StatelessWidget {
                       arguments: valueProducts.item[index].id,
                     ),
                     child: ProductGridItemWidget(
-                      text: valueProducts.item[index].title,
-                      imageUrl: valueProducts.item[index].imageUrl,
+                      productModel: valueProducts.item[index],
                     ),
                   )),
         ),

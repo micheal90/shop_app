@@ -4,25 +4,38 @@ import 'package:shop/models/order_model.dart';
 
 class OrdersProvider extends ChangeNotifier {
   List<OrderModel> _orderList = [
-    OrderModel(
-      id: '1',
-      products: [
-        CartModel(
-          id: 'id',
-          title: 'Shirt',
-          price: 15,
-          quantity: 2,
-        ),
-        CartModel(
-          id: 'id',
-          title: 'T-Shirt',
-          price: 5,
-          quantity: 1,
-        ),
-      ],
-      totalAmount: 20,
-      date: DateTime.now(),
-    ),
+    // OrderModel(
+    //   id: '1',
+    //   products: [
+    //     CartModel(
+    //       id: 'id',
+    //       title: 'Shirt',
+    //       price: 15,
+    //       quantity: 2,
+    //     ),
+    //     CartModel(
+    //       id: 'id',
+    //       title: 'T-Shirt',
+    //       price: 5,
+    //       quantity: 1,
+    //     ),
+    //   ],
+    //   totalAmount: 20,
+    //   date: DateTime.now(),
+    // ),
   ];
   List<OrderModel> get orderList => [..._orderList];
+
+  void addOrder(
+      {required List<CartModel> cartList, required double totalPrice})  {
+  
+    _orderList.add(OrderModel(
+      id: DateTime.now().toString(),
+      products: cartList,
+      totalAmount: totalPrice,
+      date: DateTime.now(),
+    ));
+
+    notifyListeners();
+  }
 }

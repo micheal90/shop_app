@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/cart_provider.dart';
+import 'package:shop/providers/orders_provider.dart';
 import 'package:shop/widgets/cart_item_widget.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
   static final routeName = '/cartScreen';
 
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  bool isloading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +26,7 @@ class CartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<CartProvider>(
-              builder: (context, valueCart, child) => Column(
+          builder: (context, valueCart, child) => Column(
             children: [
               Card(
                 elevation: 10,
@@ -41,7 +48,7 @@ class CartScreen extends StatelessWidget {
                               color: Theme.of(context).primaryColor,
                             ),
                             child: Text(
-                              '\$${valueCart.getTotalPrice()}',
+                              '\$ ${valueCart.getTotalPrice()}',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -49,9 +56,25 @@ class CartScreen extends StatelessWidget {
                             width: 10,
                           ),
                           TextButton(
-                            onPressed: () {},
-                            child:
-                                Text('ORDER NOW', style: TextStyle(fontSize: 20)),
+                            onPressed: () {
+                              setState(() {
+                                isloading = true;
+                              });
+                              Provider.of<OrdersProvider>(context,
+                                      listen: false)
+                                  .addOrder(
+                                cartList: valueCart.cartList,
+                                totalPrice: valueCart.getTotalPrice(),
+                              );
+                              valueCart.clear();
+                              setState(() {
+                                isloading = false;
+                              });
+                            },
+                            child: isloading
+                                ? CircularProgressIndicator()
+                                : Text('ORDER NOW',
+                                    style: TextStyle(fontSize: 20)),
                           )
                         ],
                       )
@@ -60,17 +83,16 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  child: ListView.builder(
-                    itemCount: valueCart.cartList.length,
-                    itemBuilder: (context, index) => CartItemWidget(
-                      id: valueCart.cartList[index].id,
-                      title: valueCart.cartList[index].title,
-                      price: valueCart.cartList[index].price,
-                      quantity: valueCart.cartList[index].quantity,
-                    ),
+                child: ListView.builder(
+                  itemCount: valueCart.cartList.length,
+                  itemBuilder: (context, index) => CartItemWidget(
+                    id: valueCart.cartList[index].id,
+                    title: valueCart.cartList[index].title,
+                    price: valueCart.cartList[index].price,
+                    quantity: valueCart.cartList[index].quantity,
                   ),
                 ),
-              
+              ),
             ],
           ),
         ),

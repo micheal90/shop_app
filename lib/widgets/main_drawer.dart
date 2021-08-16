@@ -23,7 +23,7 @@ class MainDrawer extends StatelessWidget {
               'Shop',
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            onTap: () => Navigator.pushNamed(context, '/'),
+            onTap: () => Navigator.pushReplacementNamed(context, '/'),
           ),
           Divider(),
           ListTile(
@@ -32,7 +32,7 @@ class MainDrawer extends StatelessWidget {
               'Order',
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            onTap: () => Navigator.pushNamed(context, OrederScreen.routeName),
+            onTap: () => Navigator.pushReplacementNamed(context, OrederScreen.routeName),
           ),
           Divider(),
           ListTile(
@@ -41,7 +41,7 @@ class MainDrawer extends StatelessWidget {
               'Manage Products',
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            onTap: () => Navigator.pushNamed(context, ManageProducts.routeName),
+            onTap: () => Navigator.pushReplacementNamed(context, ManageProducts.routeName),
           ),
           Divider(),
         ],

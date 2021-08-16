@@ -21,12 +21,12 @@ class _EditProductState extends State<EditProduct> {
   late ProductModel product;
 
   //add and update function
-  void _save(context) async {
+  void _save(context)  {
     FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) return;
     try {
       if (isEdit) {
-        await Provider.of<ProductsProvider>(context, listen: false)
+         Provider.of<ProductsProvider>(context, listen: false)
             .updateProduct(
           product.id,
           _titleController.text.trim(),
@@ -35,7 +35,7 @@ class _EditProductState extends State<EditProduct> {
           _imageUrlController.text.trim(),
         );
       } else {
-        await Provider.of<ProductsProvider>(context, listen: false).addProduct(
+         Provider.of<ProductsProvider>(context, listen: false).addProduct(
           _titleController.text.trim(),
           double.parse(_priceController.text.trim()),
           _descController.text.trim(),

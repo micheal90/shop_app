@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/screens/fevourite_screen.dart';
+import 'package:shop/screens/fevorite_screen.dart';
 import 'package:shop/screens/products_screen.dart';
 import 'package:shop/widgets/cart_countable_widget.dart';
 import 'package:shop/widgets/main_drawer.dart';
@@ -19,8 +19,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
       'page': ProductsScreen(),
     },
     {
-      'title': 'Favourite',
-      'page': FavouriteScreen(),
+      'title': 'Favorite',
+      'page': FavoriteScreen(),
     }
   ];
 
@@ -59,7 +59,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           ),
           BottomNavigationBarItem(
             icon:const Icon(Icons.star),
-            label: 'Favourite',
+            label: 'Favorite',
           ),
         ],
       ),

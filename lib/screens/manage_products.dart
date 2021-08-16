@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/products_provider.dart';
 import 'package:shop/screens/Edit_product.dart';
+import 'package:shop/widgets/main_drawer.dart';
 import 'package:shop/widgets/product_item_widget.dart';
 
 class ManageProducts extends StatelessWidget {
@@ -37,6 +38,8 @@ class ManageProducts extends StatelessWidget {
                 ),
               ),
       ),
+            drawer: MainDrawer(),
+
     );
   }
 }
