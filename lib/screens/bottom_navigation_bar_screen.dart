@@ -15,7 +15,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
 
   final List<Map<String, dynamic>> pages = [
     {
-      'title': 'Product',
+      'title': 'Products',
       'page': ProductsScreen(),
     },
     {

@@ -60,13 +60,13 @@ class _EditProductState extends State<EditProduct> {
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments as List;
+    var args = ModalRoute.of(context)?.settings.arguments as Map;
     if (args.isNotEmpty) {
-      isEdit = args[1];
+      isEdit = args['isEdit'];
     }
 
     if (isEdit) {
-      product = Provider.of<ProductsProvider>(context).findProductById(args[0]);
+      product = Provider.of<ProductsProvider>(context).findProductById(args['id']);
       _titleController.text = product.title;
       _priceController.text = product.price.toString();
       _descController.text = product.description;

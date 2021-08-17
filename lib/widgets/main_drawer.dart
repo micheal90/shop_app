@@ -16,6 +16,7 @@ class MainDrawer extends StatelessWidget {
               style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
             automaticallyImplyLeading: false,
+            titleSpacing: 10,
           ),
           ListTile(
             leading: Icon(Icons.shop),

@@ -39,7 +39,10 @@ class MyApp extends StatelessWidget {
               headline6: GoogleFonts.acme(fontSize: 30),
               headline3: GoogleFonts.acme(fontSize: 18, color: Colors.white),
             ),
-            appBarTheme: AppBarTheme(titleTextStyle: GoogleFonts.acme())),
+            appBarTheme: AppBarTheme(
+              titleSpacing: 0,
+              titleTextStyle: GoogleFonts.acme(),
+            )),
         routes: {
           '/': (_) => BottomNavigationBarScreen(),
           ProductsScreen.routeName: (_) => ProductsScreen(),

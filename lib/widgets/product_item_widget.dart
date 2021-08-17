@@ -20,7 +20,7 @@ class ProductItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.grey.shade500,
         backgroundImage: NetworkImage(imageUrl),
       ),
       title: Text(title),
@@ -30,7 +30,7 @@ class ProductItemWidget extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, EditProduct.routeName,
-                arguments: [id, true]),
+                arguments: {'id':id, 'isEdit':true}),
             icon: Icon(
               Icons.edit,
               color: Theme.of(context).primaryColor,
