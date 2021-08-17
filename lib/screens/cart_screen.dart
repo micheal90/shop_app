@@ -76,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
                             child: isloading
                                 ? CircularProgressIndicator()
                                 : Text('ORDER NOW',
-                                    style: TextStyle(fontSize: 20)),
+                                    style: TextStyle(fontSize: 20,color: Theme.of(context).primaryColor)),
                           )
                         ],
                       )
