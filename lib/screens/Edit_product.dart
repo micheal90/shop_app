@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/product_model.dart';
 
 import 'package:shop/providers/products_provider.dart';
 
@@ -17,17 +16,17 @@ class _EditProductState extends State<EditProduct> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
   final TextEditingController _imageUrlController = TextEditingController();
-  bool isEdit = false;
-  late ProductModel product;
+  bool isFirst = true;
+  var args;
+  var product;
 
   //add and update function
-  void _save(context)  {
+  void _save(context) {
     FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) return;
     try {
-      if (isEdit) {
-         Provider.of<ProductsProvider>(context, listen: false)
-            .updateProduct(
+      if (product != null) {
+        Provider.of<ProductsProvider>(context, listen: false).updateProduct(
           product.id,
           _titleController.text.trim(),
           double.parse(_priceController.text.trim()),
@@ -35,17 +34,34 @@ class _EditProductState extends State<EditProduct> {
           _imageUrlController.text.trim(),
         );
       } else {
-         Provider.of<ProductsProvider>(context, listen: false).addProduct(
+        Provider.of<ProductsProvider>(context, listen: false).addProduct(
           _titleController.text.trim(),
           double.parse(_priceController.text.trim()),
           _descController.text.trim(),
           _imageUrlController.text.trim(),
         );
       }
-
+      Provider.of<ProductsProvider>(context, listen: false).getProducts();
       Navigator.pop(context);
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isFirst) {
+      args = ModalRoute.of(context)!.settings.arguments;
+      if (args != null) {
+        product = Provider.of<ProductsProvider>(context, listen: false)
+            .findProductById(args['id']);
+        _titleController.text = product.title;
+        _priceController.text = product.price.toString();
+        _descController.text = product.description;
+        _imageUrlController.text = product.imageUrl;
+      }
+      isFirst = false;
     }
   }
 
@@ -60,18 +76,6 @@ class _EditProductState extends State<EditProduct> {
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments as Map;
-    if (args.isNotEmpty) {
-      isEdit = args['isEdit'];
-    }
-
-    if (isEdit) {
-      product = Provider.of<ProductsProvider>(context).findProductById(args['id']);
-      _titleController.text = product.title;
-      _priceController.text = product.price.toString();
-      _descController.text = product.description;
-      _imageUrlController.text = product.imageUrl;
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -141,11 +145,11 @@ class _EditProductState extends State<EditProduct> {
                   onSaved: (String? val) {},
                   validator: (String? val) {
                     if (val!.isEmpty) return 'Enter image url';
-                    if (!val.startsWith('http') && !val.startsWith('https'))
-                      return 'Enter a valid url';
-                    if (!val.endsWith('.png') &&
-                        !val.endsWith('.jpg') &&
-                        !val.endsWith('.jpeg')) return 'Enter a valid image';
+                    // if (!val.startsWith('http') && !val.startsWith('https'))
+                    //   return 'Enter a valid url';
+                    // if (!val.endsWith('.png') &&
+                    //     !val.endsWith('.jpg') &&
+                    //     !val.endsWith('.jpeg')) return 'Enter a valid image';
                   },
                 ),
               ],
