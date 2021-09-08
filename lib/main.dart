@@ -12,8 +12,11 @@ import 'package:shop/screens/manage_products.dart';
 import 'package:shop/screens/order_screen.dart';
 import 'package:shop/screens/product_details.dart';
 import 'package:shop/screens/products_screen.dart';
+import 'package:shop/services/local/database_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper.init();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider.value(value: ProductsProvider()),
@@ -37,7 +40,7 @@ class MyApp extends StatelessWidget {
               bodyText1: GoogleFonts.acme(fontSize: 20, color: Colors.grey),
               bodyText2: GoogleFonts.acme(fontSize: 18, color: Colors.black),
               headline6: GoogleFonts.acme(fontSize: 30),
-              headline3: GoogleFonts.acme(fontSize: 18, color: Colors.white),
+              headline3: GoogleFonts.acme(fontSize: 14, color: Colors.white),
             ),
             appBarTheme: AppBarTheme(
               titleSpacing: 0,

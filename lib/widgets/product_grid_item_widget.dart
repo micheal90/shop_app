@@ -46,7 +46,7 @@ class ProductGridItemWidget extends StatelessWidget {
                       Provider.of<ProductsProvider>(context, listen: false)
                           .setFavorite(productModel.id),
                   icon: Icon(
-                    productModel.isFavorites
+                    productModel.isFavorite
                         ? Icons.favorite
                         : Icons.favorite_outline,
                     color: Colors.red,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/providers/products_provider.dart';
 import 'package:shop/screens/fevorite_screen.dart';
 import 'package:shop/screens/products_screen.dart';
 import 'package:shop/widgets/cart_countable_widget.dart';
@@ -45,7 +47,13 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           )
         ],
       ),
-      body: pages[_currentIndex]['page'],
+      body: FutureBuilder(
+        future: Provider.of<ProductsProvider>(context).getProducts(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.waiting
+                ? CircularProgressIndicator()
+                : pages[_currentIndex]['page'],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
         selectedItemColor: Theme.of(context).accentColor,
@@ -54,11 +62,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(
-            icon:const Icon(Icons.category),
+            icon: const Icon(Icons.category),
             label: 'Product',
           ),
           BottomNavigationBarItem(
-            icon:const Icon(Icons.star),
+            icon: const Icon(Icons.star),
             label: 'Favorite',
           ),
         ],
@@ -67,4 +75,3 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     );
   }
 }
-

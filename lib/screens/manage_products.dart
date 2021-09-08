@@ -18,28 +18,30 @@ class ManageProducts extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: ()=>Navigator.pushNamed(context, EditProduct.routeName,arguments: {}),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              EditProduct.routeName,
+            ),
             icon: Icon(Icons.add),
           )
         ],
       ),
       body: Consumer<ProductsProvider>(
-        builder: (context, valueProduct, child) => valueProduct.item.isEmpty
+        builder: (context, valueProduct, child) => valueProduct.items.isEmpty
             ? Center(
                 child: Text('Not found any product',
                     style: Theme.of(context).textTheme.bodyText1))
             : ListView.builder(
-                itemCount: valueProduct.item.length,
+                itemCount: valueProduct.items.length,
                 itemBuilder: (context, index) => ProductItemWidget(
-                  id: valueProduct.item[index].id,
-                  title: valueProduct.item[index].title,
-                  price: valueProduct.item[index].price,
-                  imageUrl: valueProduct.item[index].imageUrl,
+                  id: valueProduct.items[index].id,
+                  title: valueProduct.items[index].title,
+                  price: valueProduct.items[index].price,
+                  imageUrl: valueProduct.items[index].imageUrl,
                 ),
               ),
       ),
-            drawer: MainDrawer(),
-
+      drawer: MainDrawer(),
     );
   }
 }

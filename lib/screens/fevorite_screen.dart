@@ -13,28 +13,29 @@ class FavoriteScreen extends StatelessWidget {
         body: Padding(
       padding: const EdgeInsets.all(10.0),
       child: Consumer<ProductsProvider>(
-        builder: (context, valueProducts, child) =>valueProducts.favoriteList.isEmpty
-            ? Center(
-                child: Text('Not found any product',
-                    style: Theme.of(context).textTheme.bodyText1))
-            : GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300,
-              childAspectRatio: 1,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemCount: valueProducts.favoriteList.length,
-            itemBuilder: (context, index) => InkWell(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    ProductDetails.routeName,
-                    arguments: valueProducts.favoriteList[index].id,
-                  ),
-                  child: ProductGridItemWidget(
-                    productModel: valueProducts.favoriteList[index],
-                  ),
-                )),
+        builder: (context, valueProducts, child) =>
+            valueProducts.favoriteList.isEmpty
+                ? Center(
+                    child: Text('Not found any product',
+                        style: Theme.of(context).textTheme.bodyText1))
+                : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 300,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: valueProducts.favoriteList.length,
+                    itemBuilder: (context, index) => InkWell(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            ProductDetails.routeName,
+                            arguments: valueProducts.favoriteList[index].id,
+                          ),
+                          child: ProductGridItemWidget(
+                            productModel: valueProducts.favoriteList[index],
+                          ),
+                        )),
       ),
     ));
   }
