@@ -33,11 +33,9 @@ class ManageProducts extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1))
             : ListView.builder(
                 itemCount: valueProduct.items.length,
-                itemBuilder: (context, index) => ProductItemWidget(
-                  id: valueProduct.items[index].id,
-                  title: valueProduct.items[index].title,
-                  price: valueProduct.items[index].price,
-                  imageUrl: valueProduct.items[index].imageUrl,
+                itemBuilder: (context, index) => ChangeNotifierProvider.value(
+                  value: valueProduct.items[index],
+                  child: ProductItemWidget(),
                 ),
               ),
       ),

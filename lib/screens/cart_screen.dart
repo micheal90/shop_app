@@ -76,7 +76,9 @@ class _CartScreenState extends State<CartScreen> {
                             child: isloading
                                 ? CircularProgressIndicator()
                                 : Text('ORDER NOW',
-                                    style: TextStyle(fontSize: 20,color: Theme.of(context).primaryColor)),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Theme.of(context).primaryColor)),
                           )
                         ],
                       )
@@ -89,9 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                   itemCount: valueCart.cartList.length,
                   itemBuilder: (context, index) => ChangeNotifierProvider.value(
                     value: valueCart.cartList[index],
-                    child: CartItemWidget(
-                     
-                    ),
+                    child: CartItemWidget(),
                   ),
                 ),
               ),

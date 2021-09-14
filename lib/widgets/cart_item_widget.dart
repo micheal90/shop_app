@@ -17,7 +17,7 @@ class CartItemWidget extends StatelessWidget {
           child: FittedBox(
               child: Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Text('\$$cartModel.price'),
+            child: Text('\$${cartModel.price}'),
           )),
         ),
         title: Text(
@@ -44,7 +44,7 @@ class CartItemWidget extends StatelessWidget {
                         icon: Icon(
                           Icons.remove_circle_outline,
                         )),
-                    Text('$cartModel.quantity'),
+                    Text('${cartModel.quantity}'),
                     IconButton(
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
