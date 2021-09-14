@@ -23,8 +23,9 @@ class OrederScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1))
             : ListView.builder(
                 itemCount: valueOrder.orderList.length,
-                itemBuilder: (context, index) =>
-                    OrderItemWidget(order: valueOrder.orderList[index]),
+                itemBuilder: (context, index) => ChangeNotifierProvider.value(
+                  value:valueOrder.orderList[index],
+                    child: OrderItemWidget()),
               ),
       ),
       drawer: MainDrawer(),

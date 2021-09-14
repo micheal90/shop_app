@@ -32,8 +32,9 @@ class FavoriteScreen extends StatelessWidget {
                             ProductDetails.routeName,
                             arguments: valueProducts.favoriteList[index].id,
                           ),
-                          child: ProductGridItemWidget(
-                            productModel: valueProducts.favoriteList[index],
+                          child: ChangeNotifierProvider.value(
+                            value: valueProducts.favoriteList[index],
+                            child: ProductGridItemWidget(),
                           ),
                         )),
       ),

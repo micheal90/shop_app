@@ -32,8 +32,11 @@ class ProductsScreen extends StatelessWidget {
                               ProductDetails.routeName,
                               arguments: valueProducts.items[index].id,
                             ),
-                            child: ProductGridItemWidget(
-                              productModel: valueProducts.items[index],
+                            child: ChangeNotifierProvider.value(
+                              value:valueProducts.items[index] ,
+                              child: ProductGridItemWidget(
+                               
+                              ),
                             ),
                           )),
         ),

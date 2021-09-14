@@ -5,20 +5,11 @@ import 'package:shop/providers/cart_provider.dart';
 import 'package:shop/providers/products_provider.dart';
 
 class ProductGridItemWidget extends StatelessWidget {
-  // final String text, id;
-  // final imageUrl;
-  final ProductModel productModel;
-
-  const ProductGridItemWidget({
-    // required this.id,
-    // required this.text,
-    // required this.imageUrl,
-    required this.productModel,
-    Key? key,
-  }) : super(key: key);
+  late final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
+    productModel = Provider.of<ProductModel>(context);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(

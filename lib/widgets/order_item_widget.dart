@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/models/order_model.dart';
 import 'package:intl/intl.dart';
 
 class OrderItemWidget extends StatelessWidget {
-  final OrderModel order;
-
-  const OrderItemWidget({
-    Key? key,
-    required this.order,
-  }) : super(key: key);
+  late final OrderModel order;
 
   @override
   Widget build(BuildContext context) {
-    
+    order = Provider.of<OrderModel>(context);
     return Card(
       elevation: 10,
       child: ExpansionTile(
@@ -41,7 +37,7 @@ class OrderItemWidget extends StatelessWidget {
                           '${element.quantity} x \$ ${element.price}',
                           style: TextStyle(color: Colors.grey),
                         ),
-                                       ],
+                      ],
                     ),
                     Divider()
                   ],

@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shop/models/cart_model.dart';
 
-class OrderModel {
+class OrderModel with ChangeNotifier{
   String id;
   List<CartModel> products;
   double totalAmount;

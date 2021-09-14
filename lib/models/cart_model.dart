@@ -1,4 +1,6 @@
-class CartModel {
+import 'package:flutter/cupertino.dart';
+
+class CartModel with ChangeNotifier{
   String id;
   String title;
   double price;

@@ -87,11 +87,11 @@ class _CartScreenState extends State<CartScreen> {
               Expanded(
                 child: ListView.builder(
                   itemCount: valueCart.cartList.length,
-                  itemBuilder: (context, index) => CartItemWidget(
-                    id: valueCart.cartList[index].id,
-                    title: valueCart.cartList[index].title,
-                    price: valueCart.cartList[index].price,
-                    quantity: valueCart.cartList[index].quantity,
+                  itemBuilder: (context, index) => ChangeNotifierProvider.value(
+                    value: valueCart.cartList[index],
+                    child: CartItemWidget(
+                     
+                    ),
                   ),
                 ),
               ),
