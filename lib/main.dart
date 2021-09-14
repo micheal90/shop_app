@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(
               titleSpacing: 0,
               titleTextStyle: GoogleFonts.acme(),
+              backgroundColor:Colors.deepPurple,
             )),
         routes: {
           '/': (_) => BottomNavigationBarScreen(),

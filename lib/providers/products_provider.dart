@@ -42,15 +42,15 @@ class ProductsProvider extends ChangeNotifier {
     // ),
   ];
   List<ProductModel> get items => [..._items];
-  List<ProductModel> _favoriteList = [];
-  List<ProductModel> get favoriteList => [..._favoriteList];
+  
+  List<ProductModel> get favoriteList =>
+      _items.where((element) => element.isFavorite).toList();
 
   getProducts() async {
     List<Map<String, dynamic>> list = await DatabaseHelper.getProducts();
     print(list);
     _items.clear();
-    _favoriteList.clear();
-
+   
     list.forEach((product) {
       _items.add(ProductModel(
         id: product['id'],
@@ -60,16 +60,7 @@ class ProductsProvider extends ChangeNotifier {
         imageUrl: product['imageUrl'],
         isFavorite: convertStringToBool(product['isFavorite']),
       ));
-      if (product['isFavorite'] == 'true') {
-        _favoriteList.add(ProductModel(
-          id: product['id'],
-          title: product['title'],
-          price: double.parse(product['price']),
-          description: product['description'],
-          imageUrl: product['imageUrl'],
-          isFavorite: convertStringToBool(product['isFavorite']),
-        ));
-      }
+     
     });
   }
 
